@@ -28,7 +28,19 @@ pnpm test
 
 ## Using it with Regenic
 
-Regenic's built-in connector host only ships Feishu, DSH and Cursor. To run WhatsApp, add
-`@regenic/whatsapp-personal` to your own deployment's connector host and register
-`whatsappWebLiveDriver`; build the extension with `pnpm --filter @regenic/web-extension-whatsapp build`
-and load `packages/web-extension-whatsapp/dist` as an unpacked extension.
+Regenic's built-in connector host only ships Feishu, DSH and Cursor. Load
+`@regenic/whatsapp-personal` as an external plugin (its `package.json` declares the
+`regenic.plugin` manifest):
+
+```sh
+pnpm install && pnpm build
+# either point at the package directly
+REGENIC_CHANNEL_PLUGIN=/path/to/regenic-connector-whatsapp/packages/whatsapp-personal
+# or link/copy it into the plugin directory (default ~/.regenic/plugins)
+ln -s /path/to/regenic-connector-whatsapp/packages/whatsapp-personal ~/.regenic/plugins/whatsapp-personal
+```
+
+Then install **WhatsApp** from **Engine**. Build the extension with
+`pnpm --filter @regenic/web-extension-whatsapp build` and load
+`packages/web-extension-whatsapp/dist` as an unpacked extension; paste the pairing code shown
+after install. Usage and acceptance docs are under [`docs/`](docs).

@@ -1,0 +1,118 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+overrides:
+  '@regenic/connector-contract': link:../regenic/packages/connector-contract
+
+importers:
+
+  .: {}
+
+  packages/web-extension-whatsapp:
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.5
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
+  packages/whatsapp-personal:
+    dependencies:
+      csv-parse:
+        specifier: 7.0.2
+        version: 7.0.2
+    devDependencies:
+      '@regenic/connector-contract':
+        specifier: link:../../../regenic/packages/connector-contract
+        version: link:../../../regenic/packages/connector-contract
+      '@regenic/connector-test-utils':
+        specifier: ^0.1.0
+        version: 0.1.0
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.5
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
+packages:
+
+  '@regenic/connector-test-utils@0.1.0':
+    resolution: {integrity: sha512-F4JQcFAyNq58LD04aoXdkgHIrQkAG3jHcZFBXGwyGMhE/0QzlEbEU2bsL2K2SKxADdZUeIBX4LHttZdR5vQGqg==}
+    engines: {node: '>=20'}
+
+  '@regenic/plugin-host@0.1.0':
+    resolution: {integrity: sha512-0vQSa36YyzRSBfnJATzXZYs3Wz+X9vtVjCPP1wW6a4kJ9rYgTY20RVxYYR/8cbGumeJb3PymIeWVoVHWi1dn5w==}
+    engines: {node: '>=20'}
+
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
+  '@types/node@22.20.5':
+    resolution: {integrity: sha512-U2+DNr+wSjpsTS/wZGYHq7GcwfuSmKiKvoPvK22zwTlRhU91yOniN4qRR5KhIjvif7ysw/dz/hKmfDH0Ris4aA==}
+
+  cordis@4.0.0-rc.8:
+    resolution: {integrity: sha512-vXaYK6XZJlIFTnODp4Rd973Qnd/gm3cwFzWsMTaeu6cQQheA7N+aA0GqHRNl0cFIrxMXWU8dst1ZXHlUQvfyRw==}
+    hasBin: true
+    peerDependencies:
+      '@cordisjs/plugin-include': ^1.0.4
+      '@cordisjs/plugin-loader': ^1.0.0-rc.5
+    peerDependenciesMeta:
+      '@cordisjs/plugin-include':
+        optional: true
+      '@cordisjs/plugin-loader':
+        optional: true
+
+  cosmokit@1.8.1:
+    resolution: {integrity: sha512-PDBv4l90xZKrUsZ0vtoycgZpO/j4iFsqJXrAxsyBDsnQRI7ZMJXIjgDJsKNjd5L8jnVnnlrDCdhkFbTncgCVjQ==}
+
+  csv-parse@7.0.2:
+    resolution: {integrity: sha512-uKZghv9UmPkMVLYy//KZ9HFAIJsl7wkhoEdIL0+rhuSY9pZQlhaeGEDPIe+/w7eh81MOql8Q/9+inAGWG6ZHYA==}
+
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+snapshots:
+
+  '@regenic/connector-test-utils@0.1.0':
+    dependencies:
+      '@regenic/connector-contract': link:../regenic/packages/connector-contract
+      '@regenic/plugin-host': 0.1.0
+    transitivePeerDependencies:
+      - '@cordisjs/plugin-include'
+      - '@cordisjs/plugin-loader'
+
+  '@regenic/plugin-host@0.1.0':
+    dependencies:
+      cordis: 4.0.0-rc.8
+    transitivePeerDependencies:
+      - '@cordisjs/plugin-include'
+      - '@cordisjs/plugin-loader'
+
+  '@standard-schema/spec@1.1.0': {}
+
+  '@types/node@22.20.5':
+    dependencies:
+      undici-types: 6.21.0
+
+  cordis@4.0.0-rc.8:
+    dependencies:
+      '@standard-schema/spec': 1.1.0
+      cosmokit: 1.8.1
+
+  cosmokit@1.8.1: {}
+
+  csv-parse@7.0.2: {}
+
+  typescript@5.9.3: {}
+
+  undici-types@6.21.0: {}

@@ -9,10 +9,5 @@
     "build": "pnpm -r run build",
     "test": "pnpm -r --if-present run test",
     "typecheck": "pnpm -r run typecheck"
-  },
-  "pnpm": {
-    "overrides": {
-      "@regenic/connector-contract": "link:../regenic/packages/connector-contract"
-    }
   }
 }

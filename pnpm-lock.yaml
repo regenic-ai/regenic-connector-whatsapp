@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@regenic/connector-contract': link:../regenic/packages/connector-contract
-
 importers:
 
   .: {}
@@ -27,8 +24,8 @@ importers:
         version: 7.0.2
     devDependencies:
       '@regenic/connector-contract':
-        specifier: link:../../../regenic/packages/connector-contract
-        version: link:../../../regenic/packages/connector-contract
+        specifier: ^0.1.0
+        version: 0.1.0
       '@regenic/connector-test-utils':
         specifier: ^0.1.0
         version: 0.1.0
@@ -40,6 +37,10 @@ importers:
         version: 5.9.3
 
 packages:
+
+  '@regenic/connector-contract@0.1.0':
+    resolution: {integrity: sha512-9H4DJZpfyEnBDIy/QQS6XU0XJsWGsEtHqTCaaPq2MwONkq6JScn8pb0kXT5OGB0MPvT0UpxzS4ELtRagmBGo8w==}
+    engines: {node: '>=20'}
 
   '@regenic/connector-test-utils@0.1.0':
     resolution: {integrity: sha512-F4JQcFAyNq58LD04aoXdkgHIrQkAG3jHcZFBXGwyGMhE/0QzlEbEU2bsL2K2SKxADdZUeIBX4LHttZdR5vQGqg==}
@@ -81,11 +82,22 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
 snapshots:
+
+  '@regenic/connector-contract@0.1.0':
+    dependencies:
+      '@regenic/plugin-host': 0.1.0
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - '@cordisjs/plugin-include'
+      - '@cordisjs/plugin-loader'
 
   '@regenic/connector-test-utils@0.1.0':
     dependencies:
-      '@regenic/connector-contract': link:../regenic/packages/connector-contract
+      '@regenic/connector-contract': 0.1.0
       '@regenic/plugin-host': 0.1.0
     transitivePeerDependencies:
       - '@cordisjs/plugin-include'
@@ -116,3 +128,5 @@ snapshots:
   typescript@5.9.3: {}
 
   undici-types@6.21.0: {}
+
+  zod@3.25.76: {}

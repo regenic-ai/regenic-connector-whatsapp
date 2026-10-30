@@ -5,26 +5,32 @@ no longer bundled with Regenic.
 
 | Package | Path | Purpose |
 | --- | --- | --- |
-| `@regenic/whatsapp-personal` | `packages/whatsapp-personal` | WhatsApp Personal Export / Purr CSV import and the `whatsappWebLiveDriver` (`connector_type: "whatsapp-web-live"`) |
+| `@regenic/whatsapp-personal` | `packages/whatsapp-personal` | Read-only personal exports, the default `whatsapp-web-live` browser path, and the optional opt-in `whatsapp-linked-device` local bridge |
 | `@regenic/web-extension-whatsapp` | `packages/web-extension-whatsapp` | Browser extension that bridges WhatsApp Web to a local Regenic |
 
 ## Development
 
-`@regenic/whatsapp-personal` needs a newer `@regenic/connector-contract` than the published
-`0.1.0` (it uses `EgressQueueRejectedError` and `SendNotAcceptedError`). Until that version is
-published, the root `package.json` overrides it with a sibling checkout of Regenic:
+The connector uses `@regenic/connector-contract` and its installation lifecycle hooks. For
+development against a Regenic checkout, set `REGENIC_ROOT` to that checkout; package scripts
+link the contract package from there without writing an absolute-path dependency into the
+manifest or lockfile:
 
 ```sh
-git clone git@github.com:regenic-ai/regenic.git ../regenic
-(cd ../regenic && pnpm install && pnpm --filter "@regenic/connector-contract..." build)
-
 pnpm install
-pnpm typecheck
-pnpm test
+REGENIC_ROOT=/path/to/regenic pnpm --filter @regenic/whatsapp-personal typecheck
+REGENIC_ROOT=/path/to/regenic pnpm --filter @regenic/whatsapp-personal test
 ```
 
 `@regenic/connector-contract` is a peer dependency: the host must provide the same instance so
 `instanceof` checks on driver errors keep working.
+
+The existing WhatsApp Web extension remains the default live option; user-selected export
+imports remain read-only. Neither browser use nor exports guarantee account safety. The
+separate linked-device client uses an unofficial protocol, is disabled by default, and can
+lead to account restrictions or bans. It starts only after explicit opt-in and the Engine's
+additional risk confirmation. See [linked-device setup and limits](docs/en/WHATSAPP_LINKED_DEVICE.md)
+before enabling it. The sidecar's third-party licenses are listed in
+[`packages/whatsapp-personal/THIRD_PARTY_NOTICES.md`](packages/whatsapp-personal/THIRD_PARTY_NOTICES.md).
 
 ## Using it with Regenic
 
@@ -40,7 +46,9 @@ REGENIC_CHANNEL_PLUGIN=/path/to/regenic-connector-whatsapp/packages/whatsapp-per
 ln -s /path/to/regenic-connector-whatsapp/packages/whatsapp-personal ~/.regenic/plugins/whatsapp-personal
 ```
 
-Then install **WhatsApp** from **Engine**. Build the extension with
+Then install **WhatsApp Web (default path)** from **Engine**. Build the extension with
 `pnpm --filter @regenic/web-extension-whatsapp build` and load
 `packages/web-extension-whatsapp/dist` as an unpacked extension; paste the pairing code shown
-after install. Usage and acceptance docs are under [`docs/`](docs).
+after install. The opt-in linked-device sidecar must be built separately for each target with
+`pnpm --filter @regenic/whatsapp-personal build:sidecar`; it is never downloaded at runtime.
+Usage and acceptance docs are under [`docs/`](docs).

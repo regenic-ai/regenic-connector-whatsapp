@@ -1,12 +1,12 @@
 # 个人 WhatsApp Bridge
 
 - **English:** [../en/WHATSAPP_PERSONAL.md](../en/WHATSAPP_PERSONAL.md)
-- **相关：** [消息编排](MESSAGE_ORCHESTRATION.md) · [来源协议收集表](COLLABORATION_PLATFORM_SOURCE_INTAKE.md) · [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md) · [测试与验收](WHATSAPP_PERSONAL_TESTING.md)
-- **状态：** Purr WA CSV + WhatsApp Personal Export v1 + 可选 WhatsApp Web live 驱动
+- **相关：** [消息编排](MESSAGE_ORCHESTRATION.md) · [来源协议收集表](COLLABORATION_PLATFORM_SOURCE_INTAKE.md) · [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md) · [关联设备桥接](WHATSAPP_LINKED_DEVICE.md) · [测试与验收](WHATSAPP_PERSONAL_TESTING.md)
+- **状态：** Purr WA CSV + WhatsApp Personal Export v1 + 默认浏览器实时路径 + 可选关联设备桥
 
 ## 边界
 
-个人 WhatsApp 有两条本机路径，共用同一个来源（`whatsapp-personal`）和同一套聊天
+个人 WhatsApp 有三条本机路径，共用同一个来源（`whatsapp-personal`）和同一套聊天
 身份（WhatsApp JID）。
 
 导入桥从用户在 WhatsApp Web 上明确触发的只读导出开始。这条路径不自带、也不修改
@@ -17,6 +17,10 @@
 器商店。本地 MV3 扩展读取 WhatsApp Web 左侧可见会话，把消息打到
 `POST /v1/me/connectors/:id/webhook`，并且只发送内核已经通过 `bindEgress` 接受的
 Inbox 回复。见 [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md)。
+
+非官方的 `whatsapp-linked-device` 协议桥是第三条独立路径，默认关闭且必须明确确认
+风险；它不会迁移或替代浏览器扩展。协议和账号封禁风险见
+[WhatsApp 关联设备说明](WHATSAPP_LINKED_DEVICE.md)。
 
 Purr WA 为每个选中的聊天写出一份 CSV。Regenic 逐份校验、转换，再让结果走正常的
 plugin-host 采集路径。通用 WhatsApp Personal Export v1 JSONL 仍然支持。两条路径都不得

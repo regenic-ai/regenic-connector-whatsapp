@@ -20,6 +20,12 @@ login, does not collect cookies, does not store data in the cloud, and must
 not be used for bulk messaging or unsolicited automation. Regenic does not
 publish the extension to a browser store.
 
+This remains the recommended/default live path, not a risk-free path. Browser
+automation remains subject to WhatsApp policies and UI changes. User-selected
+export imports are read-only. The separate `whatsapp-linked-device` driver is
+disabled by default and adds unofficial-protocol/account-ban risk; see
+[Linked Device](WHATSAPP_LINKED_DEVICE.md) before opting in.
+
 Chat identity is the WhatsApp JID (`@c.us`, `@g.us`, `@lid`), the same
 identity a Purr / Export import uses. Visible titles are labels only. Title
 slugs and unrecognized DOM rows are dropped, not ingested as messages.

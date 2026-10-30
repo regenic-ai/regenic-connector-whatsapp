@@ -1,12 +1,12 @@
 # Personal WhatsApp Bridge
 
 - **Chinese:** [../zh/WHATSAPP_PERSONAL.md](../zh/WHATSAPP_PERSONAL.md)
-- **Related:** [Message orchestration](MESSAGE_ORCHESTRATION.md) · [Source intake](COLLABORATION_PLATFORM_SOURCE_INTAKE.md) · [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md) · [Test and acceptance](WHATSAPP_PERSONAL_TESTING.md)
-- **Status:** Purr WA CSV + WhatsApp Personal Export v1 + optional WhatsApp Web live driver
+- **Related:** [Message orchestration](MESSAGE_ORCHESTRATION.md) · [Source intake](COLLABORATION_PLATFORM_SOURCE_INTAKE.md) · [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md) · [Linked-device bridge](WHATSAPP_LINKED_DEVICE.md) · [Test and acceptance](WHATSAPP_PERSONAL_TESTING.md)
+- **Status:** Purr WA CSV + WhatsApp Personal Export v1 + default browser live path + optional linked-device bridge
 
 ## Boundary
 
-Personal WhatsApp support has two local paths that share the same source
+Personal WhatsApp support has three local paths that share the same source
 (`whatsapp-personal`) and the same chat identity (WhatsApp JID).
 
 The import bridge begins with a user-triggered, read-only export from WhatsApp
@@ -21,6 +21,12 @@ WhatsApp Web chats, posts to
 `POST /v1/me/connectors/:id/webhook`, and sends only Inbox replies the kernel
 already accepted through `bindEgress`. See
 [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md).
+
+The unofficial `whatsapp-linked-device` protocol bridge is a third, separate
+path. It is disabled by default and requires an explicit risk acknowledgment;
+it is not a migration or replacement for the browser extension. Its protocol
+and account-ban risks are documented in
+[WhatsApp Linked Device](WHATSAPP_LINKED_DEVICE.md).
 
 Purr WA writes one CSV per selected chat. Regenic validates and converts each
 file, then sends the result through the normal plugin-host ingestion path. The

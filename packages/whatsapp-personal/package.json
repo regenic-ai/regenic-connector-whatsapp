@@ -12,7 +12,8 @@
     },
     "contributes": {
       "drivers": [
-        "whatsappWebLiveDriver"
+        "whatsappWebLiveDriver",
+        "whatsappLinkedDeviceDriver"
       ]
     }
   },
@@ -25,8 +26,13 @@
     }
   },
   "scripts": {
+    "prebuild": "node scripts/link-regenic-contract.mjs",
     "build": "tsc -p tsconfig.json",
+    "build:sidecar": "node scripts/build-whatsapp-sidecar.mjs",
+    "prepack": "pnpm run build && pnpm run build:sidecar",
+    "pretest": "node scripts/link-regenic-contract.mjs",
     "test": "pnpm run build && node --test test/*.test.cjs",
+    "pretypecheck": "node scripts/link-regenic-contract.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
@@ -39,7 +45,9 @@
     "@regenic/connector-contract": "^0.1.0"
   },
   "files": [
-    "dist"
+    "dist",
+    "bin",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "peerDependencies": {
     "@regenic/connector-contract": "^0.1.0"

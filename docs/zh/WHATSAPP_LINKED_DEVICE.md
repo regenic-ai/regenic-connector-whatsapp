@@ -76,10 +76,9 @@ MVP 映射稳定 WhatsApp JID 与消息 ID、方向、发送者、文本、时�
 外发消息会先持久化预留，再发起网络发送。如果发送结果不确定，outbox 会记录为
 `unknown` 且不会自动重试。这可避免静默重复发送，但不保证 exactly-once。
 
-## 验证与第三方代码
+## 验证与上游依赖
 
 测试使用本地 fixture 和假的 sidecar 进程。开发验证没有使用真实 WhatsApp 账号或凭据，
 没有扫码、读取或发送消息。Sidecar 将 `go.mau.fi/whatsmeow` 固定到
-`sidecar/go.mod` 中的 canonical upstream revision；没有复制 AGPL 许可的 mautrix
-bridge 代码。重新分发 sidecar 前请阅读
+`sidecar/go.mod` 中的上游版本。重新分发 sidecar 前请阅读
 [`THIRD_PARTY_NOTICES.md`](../../packages/whatsapp-personal/THIRD_PARTY_NOTICES.md)。

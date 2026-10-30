@@ -1,7 +1,7 @@
 # regenic-connector-whatsapp
 
-WhatsApp packages for Regenic, split out of the main `regenic-ai/regenic` repository. They are
-no longer bundled with Regenic.
+Local WhatsApp connectors for Regenic, including personal imports, a browser extension, and an
+optional linked-device client.
 
 | Package | Path | Purpose |
 | --- | --- | --- |

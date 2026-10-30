@@ -9,23 +9,20 @@
 Personal WhatsApp support has three local paths that share the same source
 (`whatsapp-personal`) and the same chat identity (WhatsApp JID).
 
-The import bridge begins with a user-triggered, read-only export from WhatsApp
-Web. That path does not ship or modify a browser extension. The reviewed import
-uses the upstream Purr WA userscript, then explicitly imports its CSV into the
-local personal kernel. The import bridge does not receive browser cookies, run
-hidden background collection, inspect every chat, or send messages.
+The import path begins with a user-triggered, read-only export from WhatsApp
+Web. It uses the upstream Purr WA userscript, then explicitly imports its CSV
+into the local personal kernel. The import bridge does not receive browser
+cookies, run hidden background collection, inspect every chat, or send messages.
 
-The optional live path is a separate `ChannelDriver` (`whatsapp-web-live`). It
-is not published to a browser store. A local MV3 extension reads visible
-WhatsApp Web chats, posts to
+The optional live path is a separate `ChannelDriver` (`whatsapp-web-live`). A
+local MV3 extension reads visible WhatsApp Web chats, posts to
 `POST /v1/me/connectors/:id/webhook`, and sends only Inbox replies the kernel
 already accepted through `bindEgress`. See
 [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md).
 
-The unofficial `whatsapp-linked-device` protocol bridge is a third, separate
-path. It is disabled by default and requires an explicit risk acknowledgment;
-it is not a migration or replacement for the browser extension. Its protocol
-and account-ban risks are documented in
+The optional `whatsapp-linked-device` client is a separate path, disabled by
+default and requiring explicit risk acknowledgment. Its protocol and
+account-ban risks are documented in
 [WhatsApp Linked Device](WHATSAPP_LINKED_DEVICE.md).
 
 Purr WA writes one CSV per selected chat. Regenic validates and converts each
@@ -148,9 +145,7 @@ Web live driver on the same JID.
 
 ## Open-source WhatsApp Web exporter
 
-The import bridge does not ship a browser extension. The optional live
-connector is a separate local MV3 package and is not published to a store.
-The reviewed import integration uses
+The import integration uses
 [Purr WA Export](https://github.com/0xheycat/purr-wa), MIT-licensed version
 1.0.1 pinned at commit `b5527a349c1ee64d16c0ffff51ad934f52343291`.
 Install it with the upstream Tampermonkey or Violentmonkey instructions. In its

@@ -13,5 +13,4 @@ inventory. Notices for the direct dependencies used by the sidecar:
 
 Indirect dependencies are also pinned in the repository's `sidecar/go.mod` and
 `sidecar/go.sum`; their respective upstream license and notice files apply. Preserve those
-files and notices when distributing the sidecar binary. Regenic does not copy source from the AGPL-licensed
-`mautrix/whatsapp` bridge; its behavior was used only as a reference.
+files and notices when distributing the sidecar binary.

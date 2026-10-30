@@ -9,17 +9,17 @@
 个人 WhatsApp 有三条本机路径，共用同一个来源（`whatsapp-personal`）和同一套聊天
 身份（WhatsApp JID）。
 
-导入桥从用户在 WhatsApp Web 上明确触发的只读导出开始。这条路径不自带、也不修改
-浏览器扩展；已审计的导入使用上游 Purr WA userscript，再把 CSV 显式导入本机个人
-内核。导入桥不接收浏览器 Cookie、不做隐藏后台采集、不检查所有聊天，也不发送消息。
+导入从用户在 WhatsApp Web 上明确触发的只读导出开始，使用上游 Purr WA userscript，
+再把 CSV 显式导入本机个人内核。导入桥不接收浏览器 Cookie、不做隐藏后台采集、不检查
+所有聊天，也不发送消息。
 
-可选的 live 路径是单独的 `ChannelDriver`（`whatsapp-web-live`），不会发布到浏览
-器商店。本地 MV3 扩展读取 WhatsApp Web 左侧可见会话，把消息打到
+可选的 live 路径是单独的 `ChannelDriver`（`whatsapp-web-live`）。本地 MV3 扩展读取
+WhatsApp Web 左侧可见会话，把消息打到
 `POST /v1/me/connectors/:id/webhook`，并且只发送内核已经通过 `bindEgress` 接受的
 Inbox 回复。见 [WhatsApp Web live connector](WHATSAPP_WEB_LIVE_CONNECTOR.md)。
 
-非官方的 `whatsapp-linked-device` 协议桥是第三条独立路径，默认关闭且必须明确确认
-风险；它不会迁移或替代浏览器扩展。协议和账号封禁风险见
+可选的 `whatsapp-linked-device` 客户端是另一条独立路径，默认关闭且必须明确确认风险。
+协议和账号封禁风险见
 [WhatsApp 关联设备说明](WHATSAPP_LINKED_DEVICE.md)。
 
 Purr WA 为每个选中的聊天写出一份 CSV。Regenic 逐份校验、转换，再让结果走正常的
@@ -130,8 +130,7 @@ Purr CSV 必须保留 `file_name` 以恢复 chat identity。引擎卡片上的�
 
 ## 开源 WhatsApp Web 导出工具
 
-导入桥不自带浏览器扩展。可选的 live connector 是单独的本机 MV3 包，不会发布到
-商店。当前审计并接入的导入工具是 MIT 许可证的
+当前审计并接入的导入工具是 MIT 许可证的
 [Purr WA Export](https://github.com/0xheycat/purr-wa)，固定版本 1.0.1、提交
 `b5527a349c1ee64d16c0ffff51ad934f52343291`。按上游说明通过 Tampermonkey 或
 Violentmonkey 安装。进入面板后扫描聊天，先清空默认选择，只勾选要导出的会话；启用 **CSV**，

@@ -89,11 +89,10 @@ Outgoing messages are durably reserved before network send. If the send result i
 the outbox records `unknown` and does not automatically retry. This avoids silently duplicating
 a message but is not an exactly-once delivery guarantee.
 
-## Validation and third-party code
+## Validation and upstream dependency
 
 Tests use local fixtures and a fake sidecar process. No real WhatsApp account, credential, QR
 scan, message read, or send was used for development validation. The sidecar pins
-`go.mau.fi/whatsmeow` to the canonical upstream revision in `sidecar/go.mod`; it does not copy
-code from the AGPL-licensed mautrix bridge. Review the
+`go.mau.fi/whatsmeow` to the upstream revision in `sidecar/go.mod`. Review the
 [`THIRD_PARTY_NOTICES.md`](../../packages/whatsapp-personal/THIRD_PARTY_NOTICES.md)
 before redistributing the sidecar.

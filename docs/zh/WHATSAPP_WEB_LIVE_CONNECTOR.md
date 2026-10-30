@@ -13,9 +13,8 @@ WhatsApp Web live connector 是一个本机 `ChannelDriver`。用户自己登录
 后，本地 MV3 扩展会读取**左侧可见会话列表**（依次点开，上限 30 个），把消息送进普通连接器 webhook，再从
 Inbox 回复。回复时若当前不是目标聊天，扩展会先点开对应会话再填草稿或发送。
 
-这条路径不使用 WhatsApp Business API，不绕过浏览器登录，不收集 Cookie，不把数据
-存到云端，也不得用于批量营销或未经请求的自动发送。Regenic 不把该扩展发布到浏览
-器商店。
+连接器需要用户已登录的 WhatsApp Web 会话，不收集 Cookie，也不把数据存到云端。
+不得用于批量营销或未经请求的自动发送。
 
 此路径仍是默认推荐的实时方式，但并非零风险；浏览器自动化仍受 WhatsApp 平台政策
 和页面改版影响。用户主动选择的导出导入是只读的。独立的 `whatsapp-linked-device`

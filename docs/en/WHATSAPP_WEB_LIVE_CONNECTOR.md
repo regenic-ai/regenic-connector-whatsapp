@@ -15,10 +15,9 @@ already signed in to WhatsApp Web can sync **visible chats in the left list**
 the ordinary connector webhook, and reply from Inbox. If Inbox replies to a
 chat that is not open, the extension opens that conversation first.
 
-This path does not use the WhatsApp Business API, does not bypass browser
-login, does not collect cookies, does not store data in the cloud, and must
-not be used for bulk messaging or unsolicited automation. Regenic does not
-publish the extension to a browser store.
+The connector requires a WhatsApp Web session signed in by the user. It does
+not collect cookies or store data in the cloud. Do not use it for bulk
+messaging or unsolicited automation.
 
 This remains the recommended/default live path, not a risk-free path. Browser
 automation remains subject to WhatsApp policies and UI changes. User-selected

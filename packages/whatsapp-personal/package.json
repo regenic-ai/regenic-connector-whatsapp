@@ -42,7 +42,7 @@
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2",
     "@regenic/connector-test-utils": "^0.1.0",
-    "@regenic/connector-contract": "^0.1.0"
+    "@regenic/connector-contract": "^0.2.0"
   },
   "files": [
     "dist",
@@ -50,6 +50,6 @@
     "THIRD_PARTY_NOTICES.md"
   ],
   "peerDependencies": {
-    "@regenic/connector-contract": "^0.1.0"
+    "@regenic/connector-contract": "^0.2.0"
   }
 }
